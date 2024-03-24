@@ -65,13 +65,10 @@ const images = [
 ];
 
 const container = document.querySelector(".gallery");
-
 container.insertAdjacentHTML("beforeend", createMarkup(images));
-
 function createMarkup(arr){ 
     return arr.map(({ preview, original, description }) =>
-       
-    `<li class="gallery-item">
+     `<li class="gallery-item">
   <a class="gallery-link" href=${original}>
     <img
       class="gallery-image"
