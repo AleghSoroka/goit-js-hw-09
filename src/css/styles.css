@@ -23,3 +23,91 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+:root {
+  --indent: 24px;
+  --items: 3;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.navLink {
+    display: inline-block;
+    min-width: 60px;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #040119;
+}
+.navLink:hover {
+  text-decoration: underline;
+  font-weight: 600;
+  color: #170580;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  column-gap: var(--indent);
+  row-gap: var(--indent);
+}
+
+.gallery .gallery-item {
+  flex-basis: calc((100% - var(--indent) * (var(--items) - 1))/var(--items));
+  overflow: hidden;
+}
+
+.gallery-item img {
+  display: block;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Form style */
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--indent);
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5em;
+  letter-spacing: 0.04em;
+  text-align: left;
+}
+
+input, textarea {
+  display: block;
+  min-width: 300px;
+  padding: 8px 16px;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  /* Later I will eliminate these duplicated font styles: */
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5em;
+  letter-spacing: 0.04em;
+}
+
+.feedback-form>button {
+  max-width: fit-content;
+  padding: 8px 16px;
+  background-color: #4E75FF;
+  border-radius: 8px;
+  border-color: transparent;
+  font-size: inherit;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.feedback-form>button:hover {
+  background-color: #6C8CFF;
+}
