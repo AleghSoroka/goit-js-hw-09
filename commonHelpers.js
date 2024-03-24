@@ -3,7 +3,7 @@ import"./assets/modulepreload-polyfill-3cfb730f.js";/* empty css                
     <img
       class="gallery-image"
       src=${o}
-      alt=${i}
+      alt="${i}"
     />
   </a>
 </li>`).join("")}new t(".gallery a",{captionsData:"alt",captionDelay:250});
