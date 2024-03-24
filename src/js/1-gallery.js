@@ -77,7 +77,7 @@ function createMarkup(arr){
     <img
       class="gallery-image"
       src=${preview}
-      alt=${description}
+      alt="${description}"
     />
   </a>
 </li>`)
