@@ -63,6 +63,10 @@ const images = [
     description: 'Lighthouse Coast Sea',
   },
 ];
+// Описаний в документації
+import SimpleLightbox from "simplelightbox";
+// Додатковий імпорт стилів
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const container = document.querySelector(".gallery");
 container.insertAdjacentHTML("beforeend", createMarkup(images));
@@ -80,12 +84,9 @@ function createMarkup(arr){
         .join("")
 };
 
-// Описаний в документації
-import SimpleLightbox from "simplelightbox";
-// Додатковий імпорт стилів
-import "simplelightbox/dist/simple-lightbox.min.css";
 
-const lightbox = new SimpleLightbox('.gallery-link', {
+
+const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
 });
