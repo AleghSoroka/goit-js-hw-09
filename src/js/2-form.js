@@ -1,44 +1,44 @@
 const STORAGE_KEY = "feedback-form-state";
 const form = document.querySelector(".feedback-form");
-form.addEventListener("input", formInputHandler)
-form.addEventListener("submit", formSubmitHandler)
+const emailFld = form.elements.email;
+const messageFld = form.elements.message;
 
-function formInputHandler(event) {
-    event.preventDefault();
-    const email = form.elements.email.value.trim();
-    const message = form.elements.message.value.trim();
+// On Form start up we check the local storage key state
+// If the localStorage key doesn't exist jsn =""
+const jsn = localStorage.getItem(STORAGE_KEY) ?? "";
+if (jsn) {
+    // When the localStorage key exists
+    const savedData = JSON.parse(jsn);
+    emailFld.value = savedData.email;
+    messageFld.value = savedData.message;
+};
+//Eliminating the spaces
+form.addEventListener("change", () =>
+    messageFld.value = messageFld.value.trim());
+form.addEventListener("input", formInputHandler);
+form.addEventListener("submit", formSubmitHandler);
+
+function formInputHandler() {
+    emailFld.value = emailFld.value.trim();
+    const email = emailFld.value;
+    const message = messageFld.value.trim();
     const data = JSON.stringify({ email, message });
-    localStorage.setItem(STORAGE_KEY, data)
+    localStorage.setItem(STORAGE_KEY, data);
 }
 
 function formSubmitHandler(event) {
     event.preventDefault();
-
     // Reading user info
-    const email = form.elements.email.value.trim();
-    const message = form.elements.message.value.trim();
-   
+    const email = emailFld.value;
+    const message = messageFld.value;
     // Verification weather there are not empty fields 
-    if (email.length > 0 && message.length > 0) {
-        const data = { email, message };
-        console.log(data)
-        localStorage.removeItem(STORAGE_KEY)
+    if (email && message) {
+        // Create a new user object and output it to the console window
+        console.log({ email, message });
+        // Reset the form and remove the key from local storage
         form.reset();
-        return
+        localStorage.removeItem(STORAGE_KEY)
     }
     else { alert("You have to complete the form. All fields are mandatory.") };
 };
-// If the localStorage key doesn't exist jsn =""
-const jsn = localStorage.getItem(STORAGE_KEY) ?? "";
 
-if (jsn) {
-    // When the localStorage key exists
-    const savedData = JSON.parse(jsn);
-    form.elements.email.value = savedData.email;
-    form.elements.message.value = savedData.message;
-}
-else {
-     // When the localStorage key doesn't exist
-    form.elements.email.value = "";
-    form.elements.message.value = "";
-};
